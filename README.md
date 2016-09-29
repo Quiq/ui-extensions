@@ -11,12 +11,7 @@ also be hosted from a site using https._
 ## Usage
 
 The SDK exports the `Centricient` object to the window of the browser.
-Just include the SDK in a script tag before your code. At some point
-this should also be included as a node module so you could just use:
-
-```javascript
-var Centricient = require('two-cents');
-```
+Just include the SDK in a script tag before your code.
 
 To send messages back to the Centricient client, you also need to call `init`
 and pass the hostname of the page you're hosting the extension in.
