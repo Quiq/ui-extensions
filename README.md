@@ -20,6 +20,20 @@ and pass the hostname of the page you're hosting the extension in.
 Centricient.init('https://mycompany.centricient.corp');
 ```
 
+### Cache busting
+Due to various problems across browsers with iframes, you will likely want to add this
+code to your HTML page.
+Without this code, you and your users will likely experience a significant delay 
+before any page modifications are available.
+
+```html
+<head>
+    <meta http-Equiv="Cache-Control" Content="no-cache" />
+    <meta http-Equiv="Pragma" Content="no-cache" />
+    <meta http-Equiv="Expires" Content="0" />
+</head>
+```
+
 ## Events
 
 You can subscribe to events using the `on` method.
