@@ -116,12 +116,14 @@ You can dispatch actions in the Centricient client by calling methods on
 `Centricient`.
 
 
-### `prepareMessage(text)`
+### `prepareMessage(text, method? = 'replace')`
+
 
 Prepares a message to send the customer, but doesn't send it
 
 Arguments:
 - `message` (string) - The message to send to the customer
+- `method` ('replace' | 'append' | 'prepend') - Whether the text should replace the text in the textbox or be appended or prepended to it
 
 
 ## Data

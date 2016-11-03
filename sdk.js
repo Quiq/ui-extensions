@@ -56,10 +56,12 @@ Centricient.sendMessage = function(message) {
 /**
  * Adds a message to the conversation that the add-in is attached to, but doesn't send it
  * @param  {string} message - The message to send
+ * @param  {='replace' | 'append' | 'prepend'} method - Whether the text should replace the current text
+ *   or be appended or prepended to it
  */
-Centricient.prepareMessage = function(message) {
+Centricient.prepareMessage = function(message, method) {
   checkConversationId();
-  postMessageToApp('prepareMessage', { conversationId: conversationId, message: message });
+  postMessageToApp('prepareMessage', { conversationId: conversationId, message: message, method: method });
 }
 
 /**
