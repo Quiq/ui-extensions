@@ -23,7 +23,7 @@ Centricient.init('https://mycompany.centricient.corp');
 ### Cache busting
 Due to various problems across browsers with iframes, you will likely want to add this
 code to your HTML page.
-Without this code, you and your users will likely experience a significant delay 
+Without this code, you and your users will likely experience a significant delay
 before any page modifications are available.
 
 ```html
@@ -118,12 +118,23 @@ You can dispatch actions in the Centricient client by calling methods on
 
 ### `prepareMessage(text, method? = 'replace')`
 
-
-Prepares a message to send the customer, but doesn't send it
-
 Arguments:
 - `message` (string) - The message to send to the customer
 - `method` ('replace' | 'append' | 'prepend') - Whether the text should replace the text in the textbox or be appended or prepended to it
+
+
+### `sendOnClose(text)`
+
+Sets a message to send as soon as the conversation is closed by the user.
+
+Arguments:
+- `message` (string) - The message to send to the customer
+
+A couple notes
+- The extension can only send one message at the end of the conversation. Calling this method more than once will change the message rather than queueing up new messages. If you call it with an empty string, it shoudn't send anything.
+- The message will only be sent if the conversation is ended by the user clicking the End button while the extension is loaded. It won't send it if the conversation is closed from inactivity or if it's closed by an agent that doesn't have the extension.
+- The message won't be sent if the conversation is marked as spam or if the user clicks End without ever responding
+- The message also won't send in the "long goodbye" case (i.e. The conversation is closed and then the customer texts back something that the agent clicks end without responding to)
 
 
 ## Data
