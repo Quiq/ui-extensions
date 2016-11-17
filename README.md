@@ -118,6 +118,8 @@ You can dispatch actions in the Centricient client by calling methods on
 
 ### `prepareMessage(text, method? = 'replace')`
 
+Prepares a message to send the customer, but doesn't send it
+
 Arguments:
 - `message` (string) - The message to send to the customer
 - `method` ('replace' | 'append' | 'prepend') - Whether the text should replace the text in the textbox or be appended or prepended to it
@@ -135,6 +137,14 @@ A couple notes
 - The message will only be sent if the conversation is ended by the user clicking the End button while the extension is loaded. It won't send it if the conversation is closed from inactivity or if it's closed by an agent that doesn't have the extension.
 - The message won't be sent if the conversation is marked as spam or if the user clicks End without ever responding
 - The message also won't send in the "long goodbye" case (i.e. The conversation is closed and then the customer texts back something that the agent clicks end without responding to)
+
+
+### `updateContactDisplayName(contact)`
+
+Updates the name shown in the app for the contact of the conversation
+
+Arguments:
+- `contact` (Object: {firstName:string, lastName:string}) - An object containing the firstName and lastName of the contact
 
 
 ## Data
