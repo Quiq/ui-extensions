@@ -65,6 +65,14 @@ Centricient.sendOnClose = function(message) {
 }
 
 /**
+ * Updates the name that is shown in the messaging app for the contact of the conversation
+ */
+Centricient.updateContactDisplayName = function(contact) {
+  checkConversationId();
+  postMessageToApp('updateContactDisplayName', { conversationId: conversationId, contact: contact });
+}
+
+/**
  * Gets the current conversation object
  * @return {object} The conversation object
  */
