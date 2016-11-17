@@ -45,15 +45,6 @@ Centricient.on = function(eventName, handler) {
 // TODO: We might want to create a way to register an object of handlers all at once
 
 /**
- * Sends a message in the conversation that the add-in is attached to
- * @param  {string} message - The message to send
- */
-Centricient.sendMessage = function(message) {
-  checkConversationId();
-  postMessageToApp('sendMessage', { conversationId: conversationId, message: message });
-}
-
-/**
  * Adds a message to the conversation that the add-in is attached to, but doesn't send it
  * @param  {string} message - The message to send
  * @param  {='replace' | 'append' | 'prepend'} method - Whether the text should replace the current text
@@ -62,6 +53,15 @@ Centricient.sendMessage = function(message) {
 Centricient.prepareMessage = function(message, method) {
   checkConversationId();
   postMessageToApp('prepareMessage', { conversationId: conversationId, message: message, method: method });
+}
+
+/**
+ * Sets a message to be sent when the user ends the conversation
+ * @param {string} message - The message to send at the end
+ */
+Centricient.sendOnClose = function(message) {
+  checkConversationId();
+  postMessageToApp('sendOnClose', { conversationId: conversationId, message: message });
 }
 
 /**
