@@ -1,6 +1,8 @@
 Centricient Extension SDK
 =========================
 
+[![Build Status](https://travis-ci.org/Centricient/ui-extensions.svg?branch=master)](https://travis-ci.org/Centricient/ui-extensions)
+
 This is an SDK to simplify communications between the Centricient
 messaging client and any extensions that are added to it.
 
