@@ -144,8 +144,32 @@ describe('Centricient SDK', () => {
           });
         });
       });
+    });
 
-      // TODO: Test request counter incrementing
+    describe('fetchUsers', () => {
+      const users = [
+        {id: 'thing1', firstName: 'Thing', lastName: '1'},
+        {id: 'thing2', firstName: 'Thing', lastName: '2'},
+      ];
+
+      it('posts the message to the app and calls the success callback', () => {
+        window.parent.postMessage.mockImplementationOnce(() => {
+          simulateEvent('fetchUsers.success2', {conversationId, data: users});
+        });
+
+        return Centricient.fetchUsers().then((data) => {
+          expect(data).toEqual(users);
+          expect(window.parent.postMessage).toBeCalledWith({
+            eventType: 'fetchUsers',
+            data: {
+              requestCounter: 2,
+              conversationId,
+              extensionId,
+              data: undefined,
+            },
+          }, testHost);
+        });
+      });
     });
   });
 
