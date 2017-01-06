@@ -30,6 +30,10 @@ function checkConversationId() {
   }
 }
 
+/**
+ * Initializes the extension for the centricient host it runs on
+ * @param {string} host - The base url for the site (i.e. https://dundermifflin.centricient.com)
+ */
 Centricient.init = function(host) {
   if (!host) {
     throw new Error('Init needs to be called with the hostname of the site that will run ')
@@ -37,6 +41,11 @@ Centricient.init = function(host) {
   centricientHost = host;
 };
 
+/**
+ * Subscribe the event handler for the given event
+ * @param {string} eventName
+ * @param {function} handler
+ */
 Centricient.on = function(eventName, handler) {
   eventHandlers[eventName] = eventHandlers[eventName] || [];
   eventHandlers[eventName].push(handler);
@@ -66,6 +75,8 @@ Centricient.sendOnClose = function(message) {
 
 /**
  * Updates the name that is shown in the messaging app for the contact of the conversation
+ * @param {string} contact.firstName
+ * @param {string} contact.lastName
  */
 Centricient.updateContactDisplayName = function(contact) {
   checkConversationId();
