@@ -165,8 +165,6 @@ function handleEvent(event) {
     extensionData = data.data;
   }
 
-  console.log('Handling event', event);
-
   var handlers = eventHandlers[eventType];
   if (handlers) {
     handlers.forEach(function(handler) {

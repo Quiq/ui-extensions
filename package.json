@@ -1,0 +1,26 @@
+{
+  "name": "centricient-ui",
+  "version": "1.0.0",
+  "description": "An SDK to simplify communications between the Centricient messaging client and any extensions that are added to it.",
+  "main": "sdk.js",
+  "scripts": {
+    "test": "jest --env=jsdom",
+    "jest": "jest --watch --env=jsdom"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Centricient/ui-extensions.git"
+  },
+  "keywords": [
+    "centricient"
+  ],
+  "author": "nate.norberg@centricient.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Centricient/ui-extensions/issues"
+  },
+  "homepage": "https://github.com/Centricient/ui-extensions#readme",
+  "devDependencies": {
+    "jest": "^18.1.0"
+  }
+}
