@@ -92,6 +92,14 @@ Data:
 - `conversationId` (string) - The id of the conversation
 - `message` (object) - The message object received by the agent
 
+#### collaborationMessageReceived
+
+Called when a collaborator sends a message in the collaboration
+
+Data:
+- `conversationId` (string) - The id of the service conversation
+- `collaborationId` (string) - The id of the collaboration
+- `message` (object) - The message object received by the agent
 
 #### conversationStatusChanged
 
