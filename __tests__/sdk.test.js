@@ -243,6 +243,28 @@ describe('Centricient SDK', () => {
       });
     });
 
+    describe('collaborationMessageReceived', () => {
+      const handler = jest.fn();
+      const collaborationId = 'collaborationId';
+      const message = {
+        id: 'message3',
+        text: 'spongebob',
+        author: 'collaborator',
+        timestamp: 1234571,
+        sourcePlatform: 'Centricient',
+        fromCustomer: false,
+      };
+
+      beforeEach(() => {
+        Centricient.on('collaborationMessageReceived', handler);
+        simulateEvent('collaborationMessageReceived', {conversationId, collaborationId, message});
+      });
+
+      it('passes the conversationId and message object', () => {
+        expect(handler).toBeCalledWith({conversationId, collaborationId, message});
+      });
+    });
+
     describe('conversationStatusChanged', () => {
       const handler = jest.fn();
 
