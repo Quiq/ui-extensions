@@ -1,4 +1,4 @@
-require('../sdk'); // Add Centricient to window
+require('../sdk'); // Add Quiq to window
 
 const conversationId = 'conversationId';
 const userId = 'userId';
@@ -44,7 +44,7 @@ const simulateEvent = (eventType, data) => {
   window.dispatchEvent(testEvent);
 };
 
-describe('Centricient SDK', () => {
+describe('Quiq SDK', () => {
   beforeEach(() => {
     window.parent.postMessage = jest.fn();
     simulateEvent('init', {
@@ -59,10 +59,10 @@ describe('Centricient SDK', () => {
 
   describe('before calling init', () => {
     it('does not allow sending messages to the messaging app', () => {
-      const initError = 'You need to call `init` before posting messages to Centricient';
-      expect(Centricient.prepareMessage).toThrowError(initError);
-      expect(Centricient.sendOnClose).toThrowError(initError);
-      expect(Centricient.updateContactDisplayName).toThrowError(initError);
+      const initError = 'You need to call `init` before posting messages to Quiq';
+      expect(Quiq.prepareMessage).toThrowError(initError);
+      expect(Quiq.sendOnClose).toThrowError(initError);
+      expect(Quiq.updateContactDisplayName).toThrowError(initError);
     });
   });
 
@@ -70,25 +70,25 @@ describe('Centricient SDK', () => {
   describe('data', () => {
     describe('getConversation', () => {
       it('returns the conversation object', () => {
-        expect(Centricient.getConversation()).toEqual(testConversation);
+        expect(Quiq.getConversation()).toEqual(testConversation);
       });
     });
 
     describe('getUserId', () => {
       it('returns the userId', () => {
-        expect(Centricient.getUserId()).toEqual(userId);
+        expect(Quiq.getUserId()).toEqual(userId);
       });
     });
 
     describe('getTenantId', () => {
       it('returns the tenantId', () => {
-        expect(Centricient.getTenantId()).toEqual(tenantId);
+        expect(Quiq.getTenantId()).toEqual(tenantId);
       });
     });
 
     describe('getExtensionData', () => {
       it('returns the extension data', () => {
-        expect(JSON.parse(Centricient.getExtensionData())).toEqual({favCookie: 'chocolate chip'});
+        expect(JSON.parse(Quiq.getExtensionData())).toEqual({favCookie: 'chocolate chip'});
       });
     });
 
@@ -98,7 +98,7 @@ describe('Centricient SDK', () => {
       const newData = JSON.stringify({favCookie: 'peanut butter'});
 
       beforeEach(() => {
-        Centricient.init(testHost);
+        Quiq.init(testHost);
       });
 
       // requestCounter is at 0 here
@@ -108,7 +108,7 @@ describe('Centricient SDK', () => {
             simulateEvent('setExtensionData.success0', {data: newData});
           });
 
-          return Centricient.setExtensionData(newData).then((data) => {
+          return Quiq.setExtensionData(newData).then((data) => {
             expect(data).toEqual(newData);
             expect(window.parent.postMessage).toBeCalledWith({
               eventType: 'setExtensionData',
@@ -130,7 +130,7 @@ describe('Centricient SDK', () => {
             simulateEvent('setExtensionData.error1', 'uh oh!');
           });
 
-          return Centricient.setExtensionData(newData).then(() => {}, (error) => {
+          return Quiq.setExtensionData(newData).then(() => {}, (error) => {
             expect(error).toEqual('uh oh!');
             expect(window.parent.postMessage).toBeCalledWith({
               eventType: 'setExtensionData',
@@ -157,7 +157,7 @@ describe('Centricient SDK', () => {
           simulateEvent('fetchUsers.success2', {conversationId, data: users});
         });
 
-        return Centricient.fetchUsers().then((data) => {
+        return Quiq.fetchUsers().then((data) => {
           expect(data).toEqual(users);
           expect(window.parent.postMessage).toBeCalledWith({
             eventType: 'fetchUsers',
@@ -178,7 +178,7 @@ describe('Centricient SDK', () => {
       const initHandler = jest.fn();
 
       beforeEach(() => {
-        Centricient.on('init', initHandler);
+        Quiq.on('init', initHandler);
         simulateEvent('init', {
           conversationId,
           conversation: testConversation,
@@ -200,7 +200,7 @@ describe('Centricient SDK', () => {
       const handler = jest.fn();
 
       beforeEach(() => {
-        Centricient.on('conversationAccepted', handler);
+        Quiq.on('conversationAccepted', handler);
         simulateEvent('conversationAccepted', {conversationId});
       });
 
@@ -213,7 +213,7 @@ describe('Centricient SDK', () => {
       const handler = jest.fn();
 
       beforeEach(() => {
-        Centricient.on('messageAdded', handler);
+        Quiq.on('messageAdded', handler);
         simulateEvent('messageAdded', {conversationId, text: 'spongebob'});
       });
 
@@ -234,7 +234,7 @@ describe('Centricient SDK', () => {
       };
 
       beforeEach(() => {
-        Centricient.on('messageReceived', handler);
+        Quiq.on('messageReceived', handler);
         simulateEvent('messageReceived', {conversationId, message});
       });
 
@@ -251,12 +251,12 @@ describe('Centricient SDK', () => {
         text: 'spongebob',
         author: 'collaborator',
         timestamp: 1234571,
-        sourcePlatform: 'Centricient',
+        sourcePlatform: 'Quiq',
         fromCustomer: false,
       };
 
       beforeEach(() => {
-        Centricient.on('collaborationMessageReceived', handler);
+        Quiq.on('collaborationMessageReceived', handler);
         simulateEvent('collaborationMessageReceived', {conversationId, collaborationId, message});
       });
 
@@ -269,7 +269,7 @@ describe('Centricient SDK', () => {
       const handler = jest.fn();
 
       beforeEach(() => {
-        Centricient.on('conversationStatusChanged', handler);
+        Quiq.on('conversationStatusChanged', handler);
         simulateEvent('conversationStatusChanged', {id: conversationId, status: 'inactive'});
       });
 
@@ -283,7 +283,7 @@ describe('Centricient SDK', () => {
       const data = JSON.stringify({favCookie: 'peanut butter'});
 
       beforeEach(() => {
-        Centricient.on('extensionDataChanged', handler);
+        Quiq.on('extensionDataChanged', handler);
         simulateEvent('extensionDataChanged', {conversationId, extensionId, data});
       });
 
@@ -292,7 +292,7 @@ describe('Centricient SDK', () => {
       });
 
       it('updates the value returned by getExtensionData', () => {
-        expect(JSON.parse(Centricient.getExtensionData())).toEqual({favCookie: 'peanut butter'});
+        expect(JSON.parse(Quiq.getExtensionData())).toEqual({favCookie: 'peanut butter'});
       });
     });
   });
@@ -300,12 +300,12 @@ describe('Centricient SDK', () => {
   describe('actions', () => {
     describe('after calling init', () => {
       beforeEach(() => {
-        Centricient.init(testHost);
+        Quiq.init(testHost);
       });
 
       describe('prepareMessage', () => {
         it('posts an event to message-ui', () => {
-          Centricient.prepareMessage('hello', 'append');
+          Quiq.prepareMessage('hello', 'append');
           expect(window.parent.postMessage).toBeCalledWith({
             eventType: 'prepareMessage',
             data: { conversationId, message: 'hello', method: 'append' },
@@ -315,7 +315,7 @@ describe('Centricient SDK', () => {
 
       describe('sendOnClose', () => {
         it('posts an event to message-ui', () => {
-          Centricient.sendOnClose('hello');
+          Quiq.sendOnClose('hello');
           expect(window.parent.postMessage).toBeCalledWith({
             eventType: 'sendOnClose',
             data: { conversationId, message: 'hello' },
@@ -326,7 +326,7 @@ describe('Centricient SDK', () => {
       describe('updateContactDisplayName', () => {
         it('posts an event to message-ui', () => {
           const newName = {firstName: 'Sherlock', lastName: 'Holmes'};
-          Centricient.updateContactDisplayName({
+          Quiq.updateContactDisplayName({
             firstName: 'Sherlock',
             lastName: 'Holmes',
           });
