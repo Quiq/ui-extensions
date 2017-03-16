@@ -1,25 +1,25 @@
-Centricient Extension SDK
+Quiq Extension SDK
 =========================
 
-[![Build Status](https://travis-ci.org/Quiq/ui-extensions.svg?branch=master)](https://travis-ci.org/Centricient/ui-extensions)
+[![Build Status](https://travis-ci.org/Quiq/ui-extensions.svg?branch=master)](https://travis-ci.org/Quiq/ui-extensions)
 
-This is an SDK to simplify communications between the Centricient
+This is an SDK to simplify communications between the Quiq
 messaging client and any extensions that are added to it.
 
 An extension is just a webpage that can be loaded into an iframe in the
-Centricient messaging client to add additional functionality. _This webpage must
+Quiq messaging client to add additional functionality. _This webpage must
 also be hosted from a site using https._
 
 ## Usage
 
-The SDK exports the `Centricient` object to the window of the browser.
+The SDK exports the `Quiq` object to the window of the browser.
 Just include the SDK in a script tag before your code.
 
-To send messages back to the Centricient client, you also need to call `init`
+To send messages back to the Quiq client, you also need to call `init`
 and pass the hostname of the page you're hosting the extension in.
 
 ```javascript
-Centricient.init('https://mycompany.centricient.corp');
+Quiq.init('https://mycompany.centricient.corp');
 ```
 
 ### Cache busting
@@ -43,7 +43,7 @@ You can subscribe to events using the `on` method.
 #### Syntax
 
 ```javascript
-Centricient.on(eventName, handler);
+Quiq.on(eventName, handler);
 ```
 
 The eventName is a string of the type of event to listen to. The handler
@@ -52,7 +52,7 @@ should be a function that accepts the event data as an argument.
 #### Example
 
 ```javascript
-Centricient.on('messageAdded', function(data) {
+Quiq.on('messageAdded', function(data) {
   console.log('Agent said ' + data.text);
 });
 ```
@@ -122,8 +122,8 @@ Data:
 
 ## Actions
 
-You can dispatch actions in the Centricient client by calling methods on
-`Centricient`.
+You can dispatch actions in the Quiq client by calling methods on
+`Quiq`.
 
 
 ### `prepareMessage(text, method? = 'replace')`
@@ -160,13 +160,13 @@ Arguments:
 ## Data
 
 You can get data for the context of the extension by using the getters
-provided by `Centricient`. You can only read this data. The only way to
+provided by `Quiq`. You can only read this data. The only way to
 modify data is by using actions.
 
 ### Accessing conversation data
 
 ```javascript
-var conversation = Centricient.getConversation();
+var conversation = Quiq.getConversation();
 ```
 
 #### Conversation object
@@ -190,7 +190,7 @@ var conversation = Centricient.getConversation();
 - `timestamp` (number) - The timestamp of the message
 - `author` (string) - The agentId (if sent by an agent) or whatever id is used for the channel the customer is using (i.e. phoneNumber or facebookId)
 - `fromCustomer` (boolean) - If the message is from the customer or not
-- `sourcePlatform` (string) - What platform the message was sent over (i.e. 'SMS', 'Facebook', 'Centricient')
+- `sourcePlatform` (string) - What platform the message was sent over (i.e. 'SMS', 'Facebook', 'Quiq')
 
 #### ConversationMetrics
 - `startTime` (number) - The timestamp for when the conversation was started
@@ -202,8 +202,8 @@ You can also get the userId for the logged in agent, as well as the id for the
 tenant (if your extension is for more than one company)
 
 ```javascript
-var userId = Centricient.getUserId();
-var tenantId = Centricient.getTenantId();
+var userId = Quiq.getUserId();
+var tenantId = Quiq.getTenantId();
 ```
 
 ### Extension data
@@ -219,12 +219,12 @@ or hook up any error handling if the save fails for some reason.
 
 ```javascript
 // Get the current value of your extension data
-var data = Centricient.getExtensionData();
+var data = Quiq.getExtensionData();
 
 var newData = { foo: 'bar' };
 
 // Save the new data
-Centricient.setExtensionData(JSON.stringify(newData))
+Quiq.setExtensionData(JSON.stringify(newData))
   .then(function() {
     console.log('Data is saved');
   });
@@ -237,7 +237,7 @@ function that returns a promise. Eventually we'll be able to add more of
 these.
 
 ```javascript
-Centricient.fetchUsers().then(function(data) {
+Quiq.fetchUsers().then(function(data) {
   // Do something with the users data
 });
 ```
