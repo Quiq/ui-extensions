@@ -151,7 +151,7 @@ A couple notes
 
 ### `updateContactDisplayName(contact)`
 
-Updates the name shown in the app for the contact of the conversation
+Updates the name shown in the app for the contact of the conversation. This is only for SMS conversations and the name will be saved on the server in the conversation object.
 
 Arguments:
 - `contact` (Object: {firstName:string, lastName:string}) - An object containing the firstName and lastName of the contact
