@@ -1,6 +1,6 @@
 {
   "name": "centricient-ui",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "An SDK to simplify communications between the Centricient messaging client and any extensions that are added to it.",
   "main": "sdk.js",
   "scripts": {

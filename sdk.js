@@ -93,7 +93,8 @@ Quiq.resizeWindow = function(dimensions) {
   if (!dimensions || typeof dimensions !== 'object' || (!dimensions.width && !dimensions.height)) {
     throw new Error('Missing or malformed dimensions object for resizeWindow event');
   }
-  postMessageToApp('resizeWindow', { dimensions: dimensions });
+
+  postMessageToApp('resizeWindow', { extensionId: extensionId, dimensions: dimensions });
 }
 
 /**
