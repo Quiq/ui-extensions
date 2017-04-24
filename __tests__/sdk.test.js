@@ -323,6 +323,52 @@ describe('Quiq SDK', () => {
         });
       });
 
+      describe('resizeWindow', () => {
+        it('validates input', () => {
+          const initError = 'Missing or malformed dimensions object for resizeWindow event';
+          expect(() => {
+            Quiq.resizeWindow('string')
+          }).toThrowError(initError);
+
+          expect(() => {
+            Quiq.resizeWindow(12345)
+          }).toThrowError(initError);
+
+          expect(() => {
+            Quiq.resizeWindow(null)
+          }).toThrowError(initError);
+
+          expect(() => {
+            Quiq.resizeWindow()
+          }).toThrowError(initError);
+
+          expect(() => {
+            Quiq.resizeWindow({})
+          }).toThrowError(initError);
+
+          expect(() => {
+            Quiq.resizeWindow({ width: '500px' })
+          }).not.toThrowError(initError);
+
+          expect(() => {
+            Quiq.resizeWindow({ height: '500px' })
+          }).not.toThrowError(initError);
+
+          expect(() => {
+            Quiq.resizeWindow({ height: '500px', width: '500px' })
+          }).not.toThrowError(initError);
+        });
+
+        it('posts valid params', () => {
+          const dimensions = { height: '500px', width: '500px' };
+          Quiq.resizeWindow(dimensions);
+          expect(window.parent.postMessage).toBeCalledWith({
+            eventType: 'resizeWindow',
+            data: { dimensions },
+          }, testHost);
+        });
+      });
+
       describe('updateContactDisplayName', () => {
         it('posts an event to message-ui', () => {
           const newName = {firstName: 'Sherlock', lastName: 'Holmes'};
