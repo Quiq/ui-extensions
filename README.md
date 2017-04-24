@@ -139,7 +139,7 @@ Arguments:
 Resizes the iFrame container to the given dimensions
 
 Arguments:
-- `dimensions` (Object: { height?: string, width?: string }) - New dimensions to size the window with. At least one of height or width must be defined.
+- `dimensions` (Object: { height?: string|number, width?: string|number }) - New dimensions to size the window with. At least one of height or width must be defined.
 
 ### `sendOnClose(text)`
 
