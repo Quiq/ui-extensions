@@ -134,6 +134,12 @@ Arguments:
 - `message` (string) - The message to send to the customer
 - `method` ('replace' | 'append' | 'prepend') - Whether the text should replace the text in the textbox or be appended or prepended to it
 
+### `resizeWindow(dimensions)`
+
+Resizes the iFrame container to the given dimensions
+
+Arguments:
+- `dimensions` (Object: { height?: string, width?: string }) - New dimensions to size the window with. At least one of height or width must be defined.
 
 ### `sendOnClose(text)`
 

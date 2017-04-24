@@ -84,6 +84,19 @@ Quiq.updateContactDisplayName = function(contact) {
 }
 
 /**
+ * Resize the iFrame containing the extension.
+ * @param dimensions { object } Dimensions to resize iFrame to
+ * @param dimensions.height {=string} new Height. E.g. '100%' or '500px'. Default is '500px'
+ * @param dimensions.width {=string} new Width. E.g. '100%' or '500px'. Default is '100%'
+ */
+Quiq.resizeWindow = function(dimensions) {
+  if (!dimensions || typeof dimensions !== 'object' || (!dimensions.width && !dimensions.height)) {
+    throw new Error('Missing or malformed dimensions object for resizeWindow event');
+  }
+  postMessageToApp('resizeWindow', { dimensions });
+}
+
+/**
  * Gets the current conversation object
  * @return {object} The conversation object
  */
