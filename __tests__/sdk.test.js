@@ -364,7 +364,7 @@ describe('Quiq SDK', () => {
           Quiq.resizeWindow(dimensions);
           expect(window.parent.postMessage).toBeCalledWith({
             eventType: 'resizeWindow',
-            data: { dimensions },
+            data: { extensionId: 'extensionId', dimensions },
           }, testHost);
         });
       });
