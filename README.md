@@ -177,7 +177,7 @@ var conversation = Quiq.getConversation();
 
 #### Conversation object
 - `id` (string) - The id of the conversation
-- `owner` (string) - The id of the agent the conversation is assigned to
+- `owner` (string?) - The id of the agent the conversation is assigned to if it's assigned
 - `contact` (Contact?) - The contact data for the conversation (or `null` if conversation is a collaboration)
 - `messages` (array<Message>) - The array of messages for the conversation
 - `collaboration` (Conversation?) - The conversation object of the collaboration (or `null` if there isn't one)
@@ -192,7 +192,7 @@ var conversation = Quiq.getConversation();
 
 #### Message object
 - `id` (string) - The id of the message
-- `text` (string) - The text of the message
+- `text` (string?) - The text of the message
 - `timestamp` (number) - The timestamp of the message
 - `author` (string) - The agentId (if sent by an agent) or whatever id is used for the channel the customer is using (i.e. phoneNumber or facebookId)
 - `fromCustomer` (boolean) - If the message is from the customer or not
