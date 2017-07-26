@@ -5,16 +5,15 @@
   "main": "sdk.js",
   "scripts": {
     "test": "jest --env=jsdom",
-    "jest": "jest --watch --env=jsdom"
+    "jest": "jest --watch --env=jsdom",
+    "start": "python -m SimpleHTTPServer 3000"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Centricient/ui-extensions.git"
   },
-  "keywords": [
-    "centricient"
-  ],
-  "author": "nate.norberg@centricient.com",
+  "keywords": ["quiq"],
+  "author": "nate.norberg@goquiq.com",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Centricient/ui-extensions/issues"
