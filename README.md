@@ -10,6 +10,13 @@ An extension is just a webpage that can be loaded into an iframe in the
 Quiq messaging client to add additional functionality. _This webpage must
 also be hosted from a site using https._
 
+## Example
+We have provided a basic example on how to initialize and receive data from Quiq.  
+To see and use this example, run either `npm run start` or `yarn start`,
+navigate to `http://localhost:3000/example`, and follow the instructions.  
+For this to work, you must have [python](https://www.python.org/downloads/) and either [npm](https://nodejs.org/en/) or [yarn](https://yarnpkg.com/en/) installed.
+You will also need [ngrok](https://ngrok.com/).
+
 ## Usage
 
 The SDK exports the `Quiq` object to the window of the browser.
@@ -19,7 +26,7 @@ To send messages back to the Quiq client, you also need to call `init`
 and pass the hostname of the page you're hosting the extension in.
 
 ```javascript
-Quiq.init('https://mycompany.centricient.corp');
+Quiq.init('https://mycompany.goquiq.com');
 ```
 
 ### Cache busting
@@ -64,7 +71,6 @@ Quiq.on('messageAdded', function(data) {
 Called when the add-in first loads
 
 Data:
-- `conversationId` (string) - The id of the conversation
 - `conversation` (object) - The conversation object
 
 
@@ -182,6 +188,7 @@ var conversation = Quiq.getConversation();
 - `messages` (array<Message>) - The array of messages for the conversation
 - `collaboration` (Conversation?) - The conversation object of the collaboration (or `null` if there isn't one)
 - `metrics` (ConversationMetrics) - Some metrics for the conversation
+- `contactPointId` (string?) - The contact point id of the conversation
 
 #### Contact object
 - `firstName` (string)
